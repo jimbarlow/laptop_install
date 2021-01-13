@@ -1,12 +1,10 @@
 ---
+ansible_python_interpreter: auto
 my_packages:
   - alien
   - alsa-plugins-pulseaudio
   - android-tools
   - ansible
-  - arc-icon-theme
-  - arc-theme-solid
-  - autokey-gtk
   - bind-utils
   - blueberry
   - calibre
@@ -17,17 +15,19 @@ my_packages:
   - dconf-editor
   - deluge
   - deluge-gtk
-  - docker
   - dos2unix
   - dosfstools
-  - fedora-dockerfiles
   - ffmpeg
   - filezilla
   - firefox
   - flac-libs
   - flash-plugin
+  - flat-remix
+  - flat-remix-gtk
+  - flat-remix-gnome
   - gconf-editor
   - gedit
+  - geteltorito
   - gftp
   - gimp
   - git
@@ -40,15 +40,12 @@ my_packages:
   - gnome-system-monitor
   - gnome-tweak-tool
   - golang
-  - google-chrome-stable
   - gparted
   - gpaste
   - gstreamer1-plugin-openh264
   - gtk-murrine-engine
   - gtk-unico-engine
   - guestfs-browser
-  - hack-fonts
-  - hexchat
   - inkscape
   - iotop
   - java-1.8.0-openjdk
@@ -57,8 +54,10 @@ my_packages:
   - kernel-devel
   - kcli
   - krb5-auth-dialog
+  - krb5-workstation
   - kubernetes-client
   - libcurl
+  - libguestfs-tools
   - libreoffice-calc
   - libreoffice-draw
   - libreoffice-gtk3
@@ -69,15 +68,13 @@ my_packages:
   - libvirt
   - libvirt-client
   - libvirt-daemon
-  - linphone
   - lm_sensors
   - meld
   - ModemManager
   - mosh
   - mozilla-openh264
-  - nexcloud-client-nautilus
+  - nextcloud-client-nautilus
   - nmap
-  - nmap-frontend
   - nmap-ncat
   - ntfsprogs
   - numix-icon-theme
@@ -88,21 +85,21 @@ my_packages:
   - p7zip
   - p7zip-plugins
   - pavucontrol
+  - pcaro-hermit-fonts
   - pigz
   - powerline
   - powertop
   - privoxy
-  - pykickstart
-  - python2-pygpgme
   - qemu-img
   - qemu-kvm
   - rdesktop
   - rpmrebuild
+  - ruby-devel
   - rsync
   - samba
   - samba-client
   - screen
-  - spotify-client
+  - smplayer-themes
   - sshpass
   - sshuttle
   - strace
@@ -122,8 +119,9 @@ my_packages:
   - virt-manager
   - vlc
   - wget
-  - wireshark-gtk
+  - wireshark
   - xz
+#  - https://github.com/ramboxapp/community-edition/releases/download/0.6.9/Rambox-0.6.9-linux-x86_64.rpm
 
 removed_packages:
   - gnome-terminal
@@ -142,33 +140,16 @@ removed_packages:
   - hyperv-daemons
 
 my_extensions:
-  - "750"
   - "358"
-  - "906"
-  - "1031"
-  - "826"
-  - "55"
+  - "1176"
   - "517"
-  - "905"
-  - "1166"
-  - "277"
-  - "36"
-  - "355"
+  - "964"
   - "28"
   - "1276"
-  - "1264"
-  - "1202"
-  - "1251"
-  - "1145"
-  - "1176"
-  - "442"
-  - "1064"
+  - "906"
+  - "355"
+  - "1031"
+  - "19"
   - "302"
-
-vg: "vghdd"
-storage_driver: "overlay2"
-lvname: "dockerlv"
-lvmountpath: "/var/lib/docker"
-lvsize: "40G"
 
 openweathercities: "40.4933095,-3.8758396>Las Rozas>-1 && 40.656478,-4.7002172>Ávila>-1"

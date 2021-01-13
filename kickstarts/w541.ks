@@ -16,7 +16,7 @@ text
 firstboot --disable
 
 # Use custom HDDs
-ignoredisk --only-use=sda,sdb
+ignoredisk --only-use=sda
 
 # Reboot when finished
 reboot
@@ -29,7 +29,7 @@ lang en_US.UTF-8
 
 # Network information
 network --bootproto=dhcp --device=link --ipv6=auto --no-activate
-network --hostname=xwing.minwi.lan
+network --hostname=nostromo.minwi.lan
 
 # Root password
 rootpw "secreto123."
@@ -47,23 +47,21 @@ user --groups=wheel --name=edu --password="secreto123." --gecos="edu"
 xconfig  --startxonboot
 
 # System bootloader configuration
-bootloader --location=mbr --boot-drive=sdb
+bootloader --location=mbr --boot-drive=sda
 
 # Partition clearing information
-clearpart --all --initlabel --drives=sda,sdb
+clearpart --all --initlabel --drives=sda
 zerombr
 
 # Disk partitioning information
-part pv.0001 --fstype="lvmpv" --ondisk=sdb --size=242973 --encrypted --passphrase="secreto123."
-part pv.0002 --fstype="lvmpv" --ondisk=sda --size=305244
-part /boot/efi --fstype="efi" --ondisk=sdb --size=200 --fsoptions="defaults,uid=0,gid=0,umask=077,shortname=winnt"
-part /boot --fstype="ext4" --ondisk=sdb --size=1024
-volgroup vghdd --pesize=4096 pv.0002
-volgroup vgssd --pesize=4096 pv.0001
-logvol /storage  --fstype="xfs" --size=153600 --name=storage --vgname=vghdd
-logvol swap --fstype="swap" --size=2048 --name=swap --vgname=vghdd
-logvol /home  --fstype="xfs" --size=143362 --name=home --vgname=vgssd
-logvol /  --fstype="xfs" --size=92160 --name=root --vgname=vgssd
+part /boot --fstype="ext4" --ondisk=sda --size=500
+part /boot/efi --fstype="efi" --ondisk=sda --size=200 --fsoptions="defaults,uid=0,gid=0,umask=077,shortname=winnt"
+part pv.0001 --fstype="lvmpv" --ondisk=sda --size=242973 --encrypted --passphrase="secreto123." --grow
+volgroup vgroot --pesize=4096 pv.0001
+logvol /storage  --fstype="xfs" --size=92160 --name=storage --vgname=vgroot
+logvol swap --fstype="swap" --size=2048 --name=swap --vgname=vgroot
+logvol /home  --fstype="xfs" --size=102400 --name=home --vgname=vgroot
+logvol / --fstype="xfs" --size=25600 --name=root --vgname=vgroot
 
 
 %packages

@@ -1,11 +1,5 @@
 ---
 # Repo
-- name: Add zhonghuaren repo
-  get_url:
-    url: https://download.opensuse.org/repositories/home:/zhonghuaren/{{ ansible_distribution }}_{{ ansible_distribution_version }}/home:zhonghuaren.repo
-    dest: /etc/yum.repos.d/zhonghuaren.repo
-  become: true
-
 - name: Install Rpmfusion Free repos
   dnf:
     name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm
@@ -18,28 +12,40 @@
     state: present
   become: true
 
+- name: Enable fedora-cisco-openh264 repository
+  ini_file:
+    path: /etc/yum.repos.d/fedora-cisco-openh264.repo
+    section: fedora-cisco-openh264
+    option: enabled
+    value: "1"
+  become: true
+
 - name: Install Adobe repos
   dnf:
     name: http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm
     state: present
   become: true
 
-- name: Enable hack-fonts repo
-  command: dnf copr enable -y heliocastro/hack-fonts
-  become: true
-
 - name: Enable eminguez repo
   command: dnf copr enable -y eminguez/eminguez-RPMs
   become: true
-
-- name: Enable user501254 repo
-  command: dnf copr enable -y user501254/Arc
-  become: true
-
-- name: Enable fedora-cisco-openh264
-  command: dnf config-manager --set-enabled fedora-cisco-openh264
-  become: true
+  args:
+    creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:eminguez:eminguez-RPMs.repo
 
 - name: Enable kcli repo
   command: dnf copr enable -y karmab/kcli
   become: true
+  args:
+    creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:karmab:kcli.repo
+
+- name: Enable flat-remix repo
+  command: dnf copr enable -y daniruiz/flat-remix
+  become: true
+  args:
+    creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:daniruiz:flat-remix.repo
+
+- name: Enable tripledes repo
+  command: dnf copr enable -y tripledes/fedora-rpms
+  become: true
+  args:
+    creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:tripledes:fedora-rpms.repo
